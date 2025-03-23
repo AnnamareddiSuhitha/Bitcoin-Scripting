@@ -51,7 +51,7 @@ This project demonstrates the process of creating, signing, and broadcasting Bit
 ### 1. Start Bitcoin Regtest Mode
 *bitcoind -regtest -daemon*
 
-Verify if bitcoind is running:
+Verify if bitcoind is running:<br>
 *bitcoin-cli -regtest getblockchaininfo*
 
 
@@ -65,7 +65,7 @@ Verify if bitcoind is running:
 
 ### 3. Change Address B in Second Script
 
-Before running legacy2.py, replace Address B in the script with the output from the first script.
+Before running *legacy2.py*, replace Address B in the script with the output from the first script.
 
 ### 4. Run the Second Script (Continuing Transactions)
 
@@ -88,6 +88,8 @@ Use the command,<br>
 
 Then, step through with:<br>
 *btcdeb > step #continue till end*
+
+If you reach *at end of script* then transaction is valid.
 
 
 ### 6. Restart bitcoind and Run the Third Script
@@ -113,6 +115,9 @@ Use the command,<br>
 
 Step through with:<br>
 *btcdeb > step #continue till end*
+
+If you reach *at end of script* then transaction is valid.
+
 
 
 ## Interpretation of Transactions
