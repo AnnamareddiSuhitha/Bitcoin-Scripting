@@ -28,93 +28,91 @@ This project demonstrates the process of creating, signing, and broadcasting Bit
    - Install dependencies using:
      pip install python-bitcoinrpc requests
      
-3. *Bitcoin Configuration File (bitcoin.conf)
-   Ensure bitcoin.conf contains:
-   [regtest]
-   regtest=1
-   server=1
-   rpcuser=Cryptocrew
-   rpcpassword=abc123
-   txindex=1
-   fallbackfee=0.0002
-   mintxfee=0.00001
-   paytxfee=0.0001
-   txconfirmtarget=6
-   rpcallowip=127.0.0.1
-   rpcbind=127.0.0.1
-   testnet=1
+3. *Bitcoin Configuration File (bitcoin.conf)*
+   Ensure bitcoin.conf contains:<br>
+   [regtest]<br>
+   regtest=1<br>
+   server=1<br>
+   rpcuser=Cryptocrew<br>
+   rpcpassword=abc123<br>
+   txindex=1<br>
+   fallbackfee=0.0002<br>
+   mintxfee=0.00001<br>
+   paytxfee=0.0001<br>
+   txconfirmtarget=6<br>
+   rpcallowip=127.0.0.1<br>
+   rpcbind=127.0.0.1<br>
+   testnet=1<br>
    rpcport=18443
    
 
 ## Execution Steps
 
 ### 1. Start Bitcoin Regtest Mode
-bitcoind -regtest -daemon
+*bitcoind -regtest -daemon*
 
 Verify if bitcoind is running:
-bitcoin-cli -regtest getblockchaininfo
+*bitcoin-cli -regtest getblockchaininfo*
 
 
 ### 2. Run the First Script (P2PKH Transactions)
-python first_script.py
+*python legacy.py*
 
 - Generates three legacy addresses (A, B, C)
 - Mines 101 blocks to unlock coinbase rewards
 - Funds Address A and performs transactions
 - Debug transactions
 
-### 3. Change Address B in second_script.py
+### 3. Change Address B in Second Script
 
-*Before running second_script.py, replace Address B in the script with the output from the first script.*
+Before running legacy2.py, replace Address B in the script with the output from the first script.
 
 ### 4. Run the Second Script (Continuing Transactions)
 
-python legacy2.py
+*python legacy2.py*
 
 - Retrieves UTXO for Address B
 - Sends funds from B to C
 - Debug transactions
 ## Run the following command to SSH into the debugging environment:
 
-bash
-C:\Program Files\Bitcoin\bitcoin-28.1\bin>ssh -x guest@10.206.4.201
-Enter the password(root1234) when prompted.
+C:\Program Files\Bitcoin\bitcoin-28.1\bin>ssh -x guest@10.206.4.201<br>
+Enter the password(root1234) when prompted.<br>
 Upon successful login, you should see:
 
-bash
 Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 6.8.0-52-generic x86_64)
 
 ### 5. Debug The Transactions(P2PKH)
-Use the command,
-btcdeb '[scriptSig] [scriptPubKey]'
+Use the command,<br>
+*btcdeb '[scriptSig] [scriptPubKey]'*
 
-Then, step through with:
-btcdeb > step #continue till end
+Then, step through with:<br>
+*btcdeb > step #continue till end*
 
 
 ### 6. Restart bitcoind and Run the Third Script
 
 Stop and restart bitcoind:
 
-bitcoin-cli -regtest stop
-bitcoind -regtest 
+*bitcoin-cli -regtest stop*<br>
+*bitcoind -regtest* 
 
-Then execute:
-python p2sh.py
+Then execute:<br>
+*python p2sh.py*
 
 - Uses P2SH-SegWit transactions
-- Sends transactions between new addresses (A', B', C')
+- Sends transactions between new addresses (A, B, C)
 - Mines blocks for confirmation
 
 ### 7. Debug the Third Script Transactions
 
-To debug  the  transactions:
-Use the command,
-btcdeb '[] [scriptPubKey]'
+To debug  the  transactions:<br>
+Use the command,<br>
+*btcdeb '[] [scriptPubKey]'*
 
 
-Step through with:
-btcdeb > step #continue till end
+Step through with:<br>
+*btcdeb > step #continue till end*
 
 
 ## Interpretation of Transactions
